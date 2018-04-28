@@ -23,10 +23,26 @@ class ViewController: UIViewController,CustomTableViewProtocol{
         
         myTableView.customTableViewDelegate = self
         
-        
-        
+        self.title = "テーブル"
+        let rightButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapRightButton))
+        self.navigationItem.setRightBarButton(rightButton, animated: true)
     }
     
+    @objc func tapRightButton() {
+        let sb = UIStoryboard(name: "TableSetting", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! TableSettingViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+
+    }
+
+
+}
+
+extension ViewController{
     func customTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowNumber: Int
         if section == 0 {
@@ -41,7 +57,7 @@ class ViewController: UIViewController,CustomTableViewProtocol{
     }
     
     func customNumberOfSections(in tableView: UITableView) -> Int {
-
+        
         return sectionTitles.count
     }
     
@@ -71,12 +87,5 @@ class ViewController: UIViewController,CustomTableViewProtocol{
     func customTableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(44)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-    }
-
-
 }
 
