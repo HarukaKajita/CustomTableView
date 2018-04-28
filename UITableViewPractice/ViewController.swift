@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, CustomTableViewProtocol {
+class ViewController: UIViewController,CustomTableViewProtocol{
 
     @IBOutlet weak var myTableView: CustomTableView!
     
@@ -20,6 +20,9 @@ class ViewController: UIViewController, CustomTableViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let frame = self.view.bounds
+        let myTableView = CustomTableView(frame: frame, style: .plain)
         
         myTableView.customTableViewDelegate = self
         print("viewdidload")
