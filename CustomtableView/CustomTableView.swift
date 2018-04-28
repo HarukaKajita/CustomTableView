@@ -13,7 +13,7 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //このデリゲートメソッドの定義を書き手に書いてもらう
     //基本的なUITableViewDelegateのデリゲートメソッドは書かなくてOKにする
     var customTableViewDelegate: CustomTableViewProtocol!
-    var inEmpty: Bool = false
+    var isEmpty: Bool = false
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -32,7 +32,7 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         //それを表示させる親ビューを引数で受け取る。
         //表示させたいビューは任意で受け取る。
         if rowNum == 0 {
-            self.inEmpty = true
+            self.isEmpty = true
         }
         return rowNum
     }
@@ -56,8 +56,9 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         print("5 セクションヘッダーのタイトル文字列")
-        if self.inEmpty{
+        if self.isEmpty{
             showEmptyView(sectionIndex:0)
+            self.isEmpty = false
         }
         return customTableViewDelegate.customTableView(tableView, titleForHeaderInSection: section)
     }
@@ -69,20 +70,9 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     }
 
     func showEmptyView(sectionIndex: Int) {
-        let emptyView = UIView()
         let sectionHeaderFrame = rectForHeader(inSection: sectionIndex)
-        print(rect(forSection: sectionIndex))
-        print(rectForHeader(inSection: sectionIndex))
         let frame = CGRect(x: self.frame.minX, y: sectionHeaderFrame.maxY, width: self.frame.width, height: self.frame.height-sectionHeaderFrame.height)
-        emptyView.frame = frame
-        emptyView.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.4)
-        
-        
-        let infoLabel = UILabel(frame: CGRect(x: 0, y: 100, width: self.frame.width, height: 100))
-        infoLabel.text = "取得できる情報がありませんでした。"
-        infoLabel.textAlignment = .center
-        infoLabel.textColor = UIColor.white
-        emptyView.addSubview(infoLabel)
+        let emptyView = EmptyView(frame: frame)
         self.addSubview(emptyView)
         //self.isScrollEnabled = false
     }

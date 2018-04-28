@@ -25,8 +25,7 @@
 		6160CA941FFF490A008AC4F7 /* Miniature Dachshund.png in Resources */ = {isa = PBXBuildFile; fileRef = 6160CA8A1FFF4909008AC4F7 /* Miniature Dachshund.png */; };
 		61EBD6932094C94F0030F09B /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD6922094C94F0030F09B /* CustomTableView.swift */; };
 		61EBD6952094C96E0030F09B /* CustomTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */; };
-		61EBD69B209501160030F09B /* TableSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61EBD69A209501160030F09B /* TableSetting.storyboard */; };
-		61EBD69D209501330030F09B /* TableSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD69C209501330030F09B /* TableSettingViewController.swift */; };
+		61EBD6A0209532BC0030F09B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD69F209532BC0030F09B /* EmptyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +49,7 @@
 		6160CA8A1FFF4909008AC4F7 /* Miniature Dachshund.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Miniature Dachshund.png"; sourceTree = "<group>"; };
 		61EBD6922094C94F0030F09B /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewDelegate.swift; sourceTree = "<group>"; };
-		61EBD69A209501160030F09B /* TableSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TableSetting.storyboard; sourceTree = "<group>"; };
-		61EBD69C209501330030F09B /* TableSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSettingViewController.swift; sourceTree = "<group>"; };
+		61EBD69F209532BC0030F09B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +117,7 @@
 			children = (
 				61EBD6922094C94F0030F09B /* CustomTableView.swift */,
 				61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */,
+				61EBD69F209532BC0030F09B /* EmptyView.swift */,
 			);
 			path = CustomtableView;
 			sourceTree = "<group>";
@@ -127,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				6160CA701FFE38C7008AC4F7 /* Main.storyboard */,
-				61EBD69A209501160030F09B /* TableSetting.storyboard */,
 			);
 			name = StoryBoard;
 			path = "New Group";
@@ -136,7 +134,6 @@
 		61EBD69E209503030030F09B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				61EBD69C209501330030F09B /* TableSettingViewController.swift */,
 				6160CA6E1FFE38C7008AC4F7 /* ViewController.swift */,
 			);
 			path = ViewController;
@@ -212,7 +209,6 @@
 				6160CA8E1FFF490A008AC4F7 /* American Shorthair.png in Resources */,
 				6160CA8F1FFF490A008AC4F7 /* Persian.png in Resources */,
 				6160CA941FFF490A008AC4F7 /* Miniature Dachshund.png in Resources */,
-				61EBD69B209501160030F09B /* TableSetting.storyboard in Resources */,
 				6160CA721FFE38C7008AC4F7 /* Main.storyboard in Resources */,
 				6160CA8B1FFF490A008AC4F7 /* Mikeneko.png in Resources */,
 				6160CA901FFF490A008AC4F7 /* Maltese.png in Resources */,
@@ -227,9 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				61EBD6952094C96E0030F09B /* CustomTableViewDelegate.swift in Sources */,
+				61EBD6A0209532BC0030F09B /* EmptyView.swift in Sources */,
 				6160CA6F1FFE38C7008AC4F7 /* ViewController.swift in Sources */,
 				61EBD6932094C94F0030F09B /* CustomTableView.swift in Sources */,
-				61EBD69D209501330030F09B /* TableSettingViewController.swift in Sources */,
 				6160CA6D1FFE38C7008AC4F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

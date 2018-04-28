@@ -23,16 +23,16 @@ class ViewController: UIViewController,CustomTableViewProtocol{
         
         myTableView.customTableViewDelegate = self
         
-        self.title = "テーブル"
-        let rightButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapRightButton))
-        self.navigationItem.setRightBarButton(rightButton, animated: true)
+//        self.title = "テーブル"
+//        let rightButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapRightButton))
+//        self.navigationItem.setRightBarButton(rightButton, animated: true)
     }
     
-    @objc func tapRightButton() {
-        let sb = UIStoryboard(name: "TableSetting", bundle: nil)
-        let vc = sb.instantiateInitialViewController() as! TableSettingViewController
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+//    @objc func tapRightButton() {
+//        let sb = UIStoryboard(name: "TableSetting", bundle: nil)
+//        let vc = sb.instantiateInitialViewController() as! TableSettingViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
