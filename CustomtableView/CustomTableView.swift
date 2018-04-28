@@ -14,6 +14,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //基本的なUITableViewDelegateのデリゲートメソッドは書かなくてOKにする
     var customTableViewDelegate: CustomTableViewProtocol!
     var isEmpty: Bool = false
+    var emptyView: EmptyView?
+    
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -71,9 +73,20 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
 
     func showEmptyView(sectionIndex: Int) {
         let sectionHeaderFrame = rectForHeader(inSection: sectionIndex)
-        let frame = CGRect(x: self.frame.minX, y: sectionHeaderFrame.maxY, width: self.frame.width, height: self.frame.height-sectionHeaderFrame.height)
-        let emptyView = EmptyView(frame: frame)
-        self.addSubview(emptyView)
+        print(sectionHeaderFrame)
+        print(self.frame)
+        let frame = CGRect(x: sectionHeaderFrame.minX, y: sectionHeaderFrame.maxY, width: sectionHeaderFrame.width, height: self.frame.height-sectionHeaderFrame.height)
+        emptyView = EmptyView(frame: frame, useButton: true)
+        emptyView?.reloadButton?.addTarget(self, action: #selector(reload), for: .touchUpInside)
+        self.addSubview(emptyView!)
         //self.isScrollEnabled = false
+    }
+    
+    @objc func reload() {
+        emptyView?.removeFromSuperview()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.reloadData()
+        }
+        
     }
 }
