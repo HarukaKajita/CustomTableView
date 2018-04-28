@@ -68,6 +68,7 @@
 		6160CA601FFE38C7008AC4F7 = {
 			isa = PBXGroup;
 			children = (
+				61EBD69E209503030030F09B /* ViewController */,
 				61EBD699209500390030F09B /* StoryBoard */,
 				61EBD6912094C92B0030F09B /* CustomtableView */,
 				6160CA6B1FFE38C7008AC4F7 /* UITableViewPractice */,
@@ -88,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				6160CA6C1FFE38C7008AC4F7 /* AppDelegate.swift */,
-				6160CA6E1FFE38C7008AC4F7 /* ViewController.swift */,
 				6160CA731FFE38C7008AC4F7 /* Assets.xcassets */,
 				6160CA751FFE38C7008AC4F7 /* LaunchScreen.storyboard */,
 				6160CA781FFE38C7008AC4F7 /* Info.plist */,
@@ -119,7 +119,6 @@
 			children = (
 				61EBD6922094C94F0030F09B /* CustomTableView.swift */,
 				61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */,
-				61EBD69C209501330030F09B /* TableSettingViewController.swift */,
 			);
 			path = CustomtableView;
 			sourceTree = "<group>";
@@ -132,6 +131,15 @@
 			);
 			name = StoryBoard;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		61EBD69E209503030030F09B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				61EBD69C209501330030F09B /* TableSettingViewController.swift */,
+				6160CA6E1FFE38C7008AC4F7 /* ViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
