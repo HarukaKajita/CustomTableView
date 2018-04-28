@@ -21,8 +21,8 @@ class ViewController: UIViewController,CustomTableViewProtocol{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let frame = self.view.bounds
-        let myTableView = CustomTableView(frame: frame, style: .plain)
+//        let frame = self.view.bounds
+//        let myTableView = CustomTableView(frame: frame, style: .plain)
         
         myTableView.customTableViewDelegate = self
         print("viewdidload")
@@ -37,13 +37,7 @@ class ViewController: UIViewController,CustomTableViewProtocol{
             rowNumber = catImages.count
         }
         print("numberOfRowsInSection")
-        //rowNumber = 0
-//        if rowNumber == 0 {
-//            let infoView = UIView()
-//            infoView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
-//            infoView.backgroundColor = UIColor.black
-//            tableView.addSubview(infoView)
-//        }
+        rowNumber = 0
         
         
         return rowNumber

@@ -21,6 +21,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     }
     required init(coder: NSCoder) {
         super.init(coder: coder)!
+        self.delegate = self
+        self.dataSource = self
     }
     /*
     // Only override draw() if you perform custom drawing.
@@ -35,6 +37,15 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         //rowNumが0だったら「空です」View を表示させる処理をここに挟む。
         //それを表示させる親ビューを引数で受け取る。
         //表示させたいビューは任意で受け取る。
+        if rowNum == 0 {
+            let emptyView = UIView()
+            var frame = CGRect(x: 0, y: sectionHeaderHeight, width: self.frame.width, height: self.frame.height-sectionHeaderHeight)
+            emptyView.frame = frame
+            
+            print(self.frame)
+            emptyView.backgroundColor = UIColor.brown
+            self.addSubview(emptyView)
+        }
         return rowNum
         //return 0
     }
