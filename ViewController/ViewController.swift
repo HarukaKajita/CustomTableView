@@ -50,15 +50,15 @@ extension ViewController{
         } else {
             rowNumber = catImages.count
         }
-        //rowNumber = 0
+        rowNumber = 0
         
         
         return rowNumber
     }
     
     func customNumberOfSections(in tableView: UITableView) -> Int {
-        
-        return sectionTitles.count
+        return 1
+        //return sectionTitles.count
     }
     
     func customTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
