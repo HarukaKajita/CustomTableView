@@ -25,6 +25,8 @@
 		6160CA941FFF490A008AC4F7 /* Miniature Dachshund.png in Resources */ = {isa = PBXBuildFile; fileRef = 6160CA8A1FFF4909008AC4F7 /* Miniature Dachshund.png */; };
 		61EBD6932094C94F0030F09B /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD6922094C94F0030F09B /* CustomTableView.swift */; };
 		61EBD6952094C96E0030F09B /* CustomTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */; };
+		61EBD69B209501160030F09B /* TableSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61EBD69A209501160030F09B /* TableSetting.storyboard */; };
+		61EBD69D209501330030F09B /* TableSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD69C209501330030F09B /* TableSettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		6160CA8A1FFF4909008AC4F7 /* Miniature Dachshund.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Miniature Dachshund.png"; sourceTree = "<group>"; };
 		61EBD6922094C94F0030F09B /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewDelegate.swift; sourceTree = "<group>"; };
+		61EBD69A209501160030F09B /* TableSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TableSetting.storyboard; sourceTree = "<group>"; };
+		61EBD69C209501330030F09B /* TableSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		6160CA601FFE38C7008AC4F7 = {
 			isa = PBXGroup;
 			children = (
+				61EBD699209500390030F09B /* StoryBoard */,
 				61EBD6912094C92B0030F09B /* CustomtableView */,
 				6160CA6B1FFE38C7008AC4F7 /* UITableViewPractice */,
 				6160CA6A1FFE38C7008AC4F7 /* Products */,
@@ -84,7 +89,6 @@
 			children = (
 				6160CA6C1FFE38C7008AC4F7 /* AppDelegate.swift */,
 				6160CA6E1FFE38C7008AC4F7 /* ViewController.swift */,
-				6160CA701FFE38C7008AC4F7 /* Main.storyboard */,
 				6160CA731FFE38C7008AC4F7 /* Assets.xcassets */,
 				6160CA751FFE38C7008AC4F7 /* LaunchScreen.storyboard */,
 				6160CA781FFE38C7008AC4F7 /* Info.plist */,
@@ -115,8 +119,19 @@
 			children = (
 				61EBD6922094C94F0030F09B /* CustomTableView.swift */,
 				61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */,
+				61EBD69C209501330030F09B /* TableSettingViewController.swift */,
 			);
 			path = CustomtableView;
+			sourceTree = "<group>";
+		};
+		61EBD699209500390030F09B /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				6160CA701FFE38C7008AC4F7 /* Main.storyboard */,
+				61EBD69A209501160030F09B /* TableSetting.storyboard */,
+			);
+			name = StoryBoard;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +204,7 @@
 				6160CA8E1FFF490A008AC4F7 /* American Shorthair.png in Resources */,
 				6160CA8F1FFF490A008AC4F7 /* Persian.png in Resources */,
 				6160CA941FFF490A008AC4F7 /* Miniature Dachshund.png in Resources */,
+				61EBD69B209501160030F09B /* TableSetting.storyboard in Resources */,
 				6160CA721FFE38C7008AC4F7 /* Main.storyboard in Resources */,
 				6160CA8B1FFF490A008AC4F7 /* Mikeneko.png in Resources */,
 				6160CA901FFF490A008AC4F7 /* Maltese.png in Resources */,
@@ -205,6 +221,7 @@
 				61EBD6952094C96E0030F09B /* CustomTableViewDelegate.swift in Sources */,
 				6160CA6F1FFE38C7008AC4F7 /* ViewController.swift in Sources */,
 				61EBD6932094C94F0030F09B /* CustomTableView.swift in Sources */,
+				61EBD69D209501330030F09B /* TableSettingViewController.swift in Sources */,
 				6160CA6D1FFE38C7008AC4F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

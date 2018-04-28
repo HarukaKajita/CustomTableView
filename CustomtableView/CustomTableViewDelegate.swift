@@ -11,7 +11,6 @@ import UIKit
 
 protocol CustomTableViewProtocol{
     
-    //一旦返り値は適当にする。実際は
     func customTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     func customNumberOfSections(in tableView: UITableView) -> Int
     func customTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

@@ -21,11 +21,9 @@ class ViewController: UIViewController,CustomTableViewProtocol{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let frame = self.view.bounds
-//        let myTableView = CustomTableView(frame: frame, style: .plain)
-        
         myTableView.customTableViewDelegate = self
-        print("viewdidload")
+        
+        
         
     }
     
@@ -36,16 +34,14 @@ class ViewController: UIViewController,CustomTableViewProtocol{
         } else {
             rowNumber = catImages.count
         }
-        print("numberOfRowsInSection")
-        rowNumber = 0
+        //rowNumber = 0
         
         
         return rowNumber
     }
     
     func customNumberOfSections(in tableView: UITableView) -> Int {
-        print("numberOfSections")
-       
+
         return sectionTitles.count
     }
     
@@ -60,23 +56,19 @@ class ViewController: UIViewController,CustomTableViewProtocol{
             cell.detailTextLabel?.text = "This is a \(catImages[indexPath.row])"
             cell.imageView?.image = UIImage(named: "\(catImages[indexPath.row]).png")
         }
-        print("cellForRowAt(\(indexPath.row))")
         return cell
     }
     
     func customTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("heightForRowAt(\(indexPath.row))")
         return CGFloat(60)
     }
     
     func customTableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print("titleForHeaderInSection")
         
         return sectionTitles[section]
     }
     
     func customTableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        print("heightForHeaderInSection")
         return CGFloat(44)
     }
 
