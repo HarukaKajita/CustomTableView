@@ -16,15 +16,16 @@ class EmptyView: UIView {
     init(frame: CGRect, useButton: Bool) {
         super.init(frame: frame)
         self.backgroundColor = baseColor
-        //レイアウトは考えないと崩れかねない
+        //CustomtableViewが十分な大きさを確保できていないとemptyViewのラベルとボタンのレイアウトが崩れる可能性がある
         let infoLabel = UILabel(frame: CGRect(x: 0, y: 100, width: self.frame.width, height: 100))
         infoLabel.text = "取得できる情報がありませんでした。"
         infoLabel.textAlignment = .center
         infoLabel.textColor = UIColor.white
         if useButton{
             reloadButton = UIButton()
-            reloadButton?.frame.size = CGSize(width: 100, height: 80)
-            reloadButton?.center = self.center
+            reloadButton?.frame.size = CGSize(width: 80, height: 40)
+            reloadButton?.center.x = self.center.x
+            reloadButton?.frame.origin.y = infoLabel.frame.maxY + 20
             reloadButton?.setTitle("更新", for: .normal)
             reloadButton?.titleLabel?.textColor = UIColor.white
             reloadButton?.backgroundColor = baseColor

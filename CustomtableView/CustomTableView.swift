@@ -15,21 +15,42 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     var customTableViewDelegate: CustomTableViewProtocol!
     var isEmpty: Bool = false
     var emptyView: EmptyView?
+    var reloadInterval = 0.5
     
+    //更新を試す為に一時的にフィールドに定義
+    var rowNum:Int = 0
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         self.delegate = self
         self.dataSource = self
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: UIControlEvents.valueChanged)
+        self.refreshControl = refreshControl
     }
     required init(coder: NSCoder) {
         super.init(coder: coder)!
         self.delegate = self
         self.dataSource = self
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: UIControlEvents.valueChanged)
+        self.refreshControl = refreshControl
     }
+    
+    @objc func refreshTable(){
+        if emptyView != nil{
+            emptyView?.removeFromSuperview()
+        }
+        self.rowNum = 3
+        self.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("3 セクション内の行の数")
-        let rowNum = customTableViewDelegate.customTableView(tableView, numberOfRowsInSection:section)
+        //rowNum = customTableViewDelegate.customTableView(tableView, numberOfRowsInSection:section)
         //rowNumが0だったら「空です」View を表示させる処理をここに挟む。
         //それを表示させる親ビューを引数で受け取る。
         //表示させたいビューは任意で受け取る。
@@ -84,7 +105,9 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
     @objc func reload() {
         emptyView?.removeFromSuperview()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        //更新が早すぎて更新されたかどうかが分からないので0.5秒開けています。
+        DispatchQueue.main.asyncAfter(deadline: .now() + reloadInterval) {
+            self.rowNum = 3
             self.reloadData()
         }
         
