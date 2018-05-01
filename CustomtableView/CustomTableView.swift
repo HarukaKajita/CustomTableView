@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//複数セクションを使う場合は考慮していません。→emptyViewの表示の仕方をどうするかを定めれば改善の余地あり
 class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
 
     //このデリゲートメソッドの定義を書き手に書いてもらう
@@ -22,15 +22,14 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
-        self.delegate = self
-        self.dataSource = self
-        
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshTable), for: UIControlEvents.valueChanged)
-        self.refreshControl = refreshControl
+        setup()
     }
     required init(coder: NSCoder) {
         super.init(coder: coder)!
+        setup()
+    }
+    
+    private func setup(){
         self.delegate = self
         self.dataSource = self
         
@@ -39,19 +38,42 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         self.refreshControl = refreshControl
     }
     
+    func showEmptyView(sectionIndex: Int = 0) {
+        let sectionHeaderFrame = rectForHeader(inSection: sectionIndex)
+        
+        let frame = CGRect(x: self.bounds.minX, y: sectionHeaderFrame.maxY, width: self.bounds.size.width, height: self.frame.height-sectionHeaderFrame.height)
+        emptyView = EmptyView(frame: frame, useRefreshButton: true)
+        emptyView?.reloadButton?.addTarget(self, action: #selector(reload), for: .touchUpInside)
+        self.addSubview(emptyView!)
+        //self.isScrollEnabled = false //←これは任意で
+    }
     @objc func refreshTable(){
-        if emptyView != nil{
-            emptyView?.removeFromSuperview()
-        }
-        self.rowNum = 3
+        //emptyViewを削除しないとどんどん重なっていく
+        emptyView?.removeFromSuperview()
+        self.rowNum = 3 //サンプルの為強制的にデータを取得できるようにしている
         self.reloadData()
         self.refreshControl?.endRefreshing()
     }
     
+    @objc func reload() {
+        //emptyViewを削除しないとどんどん重なっていく
+        emptyView?.removeFromSuperview()
+        //更新が早すぎて更新されたかどうかが分からないので0.5秒開けています。
+        DispatchQueue.main.asyncAfter(deadline: .now() + reloadInterval) {
+            self.rowNum = 3 //サンプルの為強制的にデータを取得できるようにしている
+            self.reloadData()
+        }
+        
+    }
+}
+
+
+
+extension CustomTableView{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("3 セクション内の行の数")
         //rowNum = customTableViewDelegate.customTableView(tableView, numberOfRowsInSection:section)
-        //rowNumが0だったら「空です」View を表示させる処理をここに挟む。
+        //rowNumが0だったらemptyView を表示させる処理をここに挟む。
         //それを表示させる親ビューを引数で受け取る。
         //表示させたいビューは任意で受け取る。
         if rowNum == 0 {
@@ -79,8 +101,9 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         print("5 セクションヘッダーのタイトル文字列")
+        //emptyViewはセクションの形が定まってからじゃないとならないのでここに書いてあります。
         if self.isEmpty{
-            showEmptyView(sectionIndex:0)
+            showEmptyView()
             self.isEmpty = false
         }
         return customTableViewDelegate.customTableView(tableView, titleForHeaderInSection: section)
@@ -88,28 +111,7 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         print("2 セクションヘッダーの高さ")
-      
-        return customTableViewDelegate.customTableView(tableView, heightForHeaderInSection: section)
-    }
-
-    func showEmptyView(sectionIndex: Int) {
-        let sectionHeaderFrame = rectForHeader(inSection: sectionIndex)
-        print(sectionHeaderFrame)
-        print(self.frame)
-        let frame = CGRect(x: sectionHeaderFrame.minX, y: sectionHeaderFrame.maxY, width: sectionHeaderFrame.width, height: self.frame.height-sectionHeaderFrame.height)
-        emptyView = EmptyView(frame: frame, useButton: true)
-        emptyView?.reloadButton?.addTarget(self, action: #selector(reload), for: .touchUpInside)
-        self.addSubview(emptyView!)
-        //self.isScrollEnabled = false
-    }
-    
-    @objc func reload() {
-        emptyView?.removeFromSuperview()
-        //更新が早すぎて更新されたかどうかが分からないので0.5秒開けています。
-        DispatchQueue.main.asyncAfter(deadline: .now() + reloadInterval) {
-            self.rowNum = 3
-            self.reloadData()
-        }
         
+        return customTableViewDelegate.customTableView(tableView, heightForHeaderInSection: section)
     }
 }

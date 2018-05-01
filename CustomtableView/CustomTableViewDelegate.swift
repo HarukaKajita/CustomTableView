@@ -6,7 +6,12 @@
 //  Copyright © 2018年 Haruka Kajita. All rights reserved.
 //
 
-//import Foundation
+
+///summury
+/*
+UITableViewDelegateとUITableViewDataSourceのデリゲートメソッドと同じ規約のプロトコル。
+これを介して上記のメソッドを定義する事で一般処理と特殊処理を定義できる。
+ */
 import UIKit
 
 protocol CustomTableViewProtocol{
