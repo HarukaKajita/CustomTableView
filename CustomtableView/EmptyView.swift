@@ -16,7 +16,7 @@ class EmptyView: UIView {
     //EmptyViewのrectと更新ボタンの使用の有無をboolで受け取るコンストラクタ
     init(frame: CGRect, useRefreshButton: Bool) {
         super.init(frame: frame)
-        //背景色
+        
         self.backgroundColor = baseColor
         //CustomtableViewが十分な大きさを確保できていないとemptyViewのラベルとボタンのレイアウトが崩れる可能性がある
         let infoLabel = UILabel(frame: CGRect(x: 0, y: 100, width: self.frame.width, height: 100))

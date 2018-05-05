@@ -17,8 +17,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     var emptyView: EmptyView?
     var reloadInterval = 0.5
     
-    //更新を試す為に一時的にフィールドに定義
-    var rowNum:Int = 0
+    //表示するrowの数をカウントする変数。ここが0ならemptyViewが表示されます。
+    var totalRowNum = Int(0)
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -45,12 +45,11 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         emptyView = EmptyView(frame: frame, useRefreshButton: true)
         emptyView?.reloadButton?.addTarget(self, action: #selector(reload), for: .touchUpInside)
         self.addSubview(emptyView!)
-        //self.isScrollEnabled = false //←これは任意で
     }
+    
     @objc func refreshTable(){
         //emptyViewを削除しないとどんどん重なっていく
         emptyView?.removeFromSuperview()
-        self.rowNum = 3 //サンプルの為強制的にデータを取得できるようにしている
         self.reloadData()
         self.refreshControl?.endRefreshing()
     }
@@ -60,7 +59,6 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         emptyView?.removeFromSuperview()
         //更新が早すぎて更新されたかどうかが分からないので0.5秒開けています。
         DispatchQueue.main.asyncAfter(deadline: .now() + reloadInterval) {
-            self.rowNum = 3 //サンプルの為強制的にデータを取得できるようにしている
             self.reloadData()
         }
         
@@ -71,47 +69,38 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
 
 extension CustomTableView{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("3 セクション内の行の数")
-        //rowNum = customTableViewDelegate.customTableView(tableView, numberOfRowsInSection:section)
+        let rowNum = customTableViewDelegate.customTableView(tableView, numberOfRowsInSection:section)
         //rowNumが0だったらemptyView を表示させる処理をここに挟む。
         //それを表示させる親ビューを引数で受け取る。
         //表示させたいビューは任意で受け取る。
-        if rowNum == 0 {
-            self.isEmpty = true
-        }
+        self.totalRowNum += rowNum //表示するrowの数がカウントされる
         return rowNum
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("1 セクションの数")
         return customTableViewDelegate.customNumberOfSections(in: tableView)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("4 セルの設定")
         let cell = customTableViewDelegate.customTableView(tableView, cellForRowAt:indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("5 行の高さ")
-        
         return customTableViewDelegate.customTableView(tableView, heightForRowAt: indexPath)
     }
     
+    //ここが最後に呼ばれるdelegateメソッドっぽいのでここでemptyView表示の処理をする
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        print("5 セクションヘッダーのタイトル文字列")
-        //emptyViewはセクションの形が定まってからじゃないとならないのでここに書いてあります。
-        if self.isEmpty{
+        //表示するrowが無い場合にemptyViewが表示される
+        if self.totalRowNum == 0{
             showEmptyView()
-            self.isEmpty = false
+            self.totalRowNum = 0 //リセット
         }
         return customTableViewDelegate.customTableView(tableView, titleForHeaderInSection: section)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        print("2 セクションヘッダーの高さ")
-        
         return customTableViewDelegate.customTableView(tableView, heightForHeaderInSection: section)
     }
 }

@@ -16,6 +16,7 @@ import UIKit
 
 protocol CustomTableViewProtocol{
     
+    //他に使いたいdelegateメソッドがあったら随時追記して下さい
     func customTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     func customNumberOfSections(in tableView: UITableView) -> Int
     func customTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

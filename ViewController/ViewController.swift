@@ -16,8 +16,6 @@ class ViewController: UIViewController,CustomTableViewProtocol{
     let catImages = ["American Shorthair", "Munchkin", "Persian", "Russian Blue", "Mikeneko"]
     let sectionTitles = ["Dog", "Cat"]
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,21 +29,18 @@ class ViewController: UIViewController,CustomTableViewProtocol{
 
 extension ViewController{
     func customTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowNumber: Int
+        var rowNum: Int
         if section == 0 {
-            rowNumber = dogImages.count
+            rowNum = dogImages.count
         } else {
-            rowNumber = catImages.count
+            rowNum = catImages.count
         }
-        rowNumber = 0
         
-        
-        return rowNumber
+        return rowNum
     }
     
     func customNumberOfSections(in tableView: UITableView) -> Int {
-        return 1
-        //return sectionTitles.count
+        return sectionTitles.count
     }
     
     func customTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
