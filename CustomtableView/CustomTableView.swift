@@ -14,7 +14,7 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //基本的なUITableViewDelegateのデリゲートメソッドは書かなくてOKにする
     var customTableViewDelegate: CustomTableViewProtocol!
     private var emptyView: EmptyView?
-    var customEmptyView: UIView? //emptyViewを独自に変えたい場合はこれに代入
+    private var customEmptyView: UIView? //emptyViewを独自に変えたい場合はこれに代入
     
     
     //表示するrowの数をカウントする変数。ここが0ならemptyViewが表示されます。
@@ -27,6 +27,11 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     required init(coder: NSCoder) {
         super.init(coder: coder)!
         setup()
+    }
+    //独自のemptyViewを使う時用のコンストラクタ
+    init(frame: CGRect, style: UITableViewStyle, emptyView: UIView) {
+        super.init(frame: frame, style: style)
+        self.customEmptyView = emptyView
     }
     
     private func setup(){
