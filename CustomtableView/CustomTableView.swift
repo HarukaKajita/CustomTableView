@@ -13,7 +13,9 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //このデリゲートメソッドの定義を書き手に書いてもらう
     //基本的なUITableViewDelegateのデリゲートメソッドは書かなくてOKにする
     var customTableViewDelegate: CustomTableViewProtocol!
-    var emptyView: EmptyView?
+    private var emptyView: EmptyView?
+    var customEmptyView: UIView? //emptyViewを独自に変えたい場合はこれに代入
+    
     
     //表示するrowの数をカウントする変数。ここが0ならemptyViewが表示されます。
     var totalRowNum = Int(0)
@@ -37,9 +39,16 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     }
     
     func showEmptyView() {
+        //emptyView表示領域 → TableViewにかぶさる
         let frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.height)
-        emptyView = EmptyView(frame: frame, useRefreshButton: true)
-        emptyView?.reloadButton?.addTarget(self, action: #selector(reload), for: .touchUpInside)
+        //独自のemptyViewが用意されている場合はそれを使う
+        if customEmptyView != nil {
+            customEmptyView?.frame = frame
+            emptyView = customEmptyView as? EmptyView
+        } else {
+            emptyView = EmptyView(frame: frame, useRefreshButton: true)
+            emptyView?.reloadButton?.addTarget(self, action: #selector(reload), for: .touchUpInside)
+        }
         self.addSubview(emptyView!)
     }
     
