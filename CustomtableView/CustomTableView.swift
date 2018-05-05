@@ -37,23 +37,20 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         self.refreshControl = refreshControl
     }
     
-    func showEmptyView(sectionIndex: Int = 0) {
-        let sectionHeaderFrame = rectForHeader(inSection: sectionIndex)
-        
-        let frame = CGRect(x: self.bounds.minX, y: sectionHeaderFrame.maxY, width: self.bounds.size.width, height: self.frame.height-sectionHeaderFrame.height)
+    func showEmptyView() {
+        let frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.height)
         emptyView = EmptyView(frame: frame, useRefreshButton: true)
         emptyView?.reloadButton?.addTarget(self, action: #selector(reload), for: .touchUpInside)
         self.addSubview(emptyView!)
     }
     
     @objc func refreshTable(){
-        //emptyViewを削除しないとどんどん重なっていく
-        emptyView?.removeFromSuperview()
-        self.reloadData()
+        reload()
         self.refreshControl?.endRefreshing()
     }
     
     @objc func reload() {
+        print("reload")
         //emptyViewを削除しないとどんどん重なっていく
         emptyView?.removeFromSuperview()
         //更新
