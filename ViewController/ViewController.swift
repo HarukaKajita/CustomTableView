@@ -13,12 +13,15 @@ class ViewController: UIViewController,CustomTableViewProtocol{
     @IBOutlet weak var myTableView: CustomTableView!
     
     let dogImages = ["Pug", "Chihuahua", "Miniature Dachshund", "Maltese", "Corgi"]
-    let catImages = ["American Shorthair", "Munchkin", "Persian", "Russian Blue", "Mikeneko"]
-    let sectionTitles = ["Dog", "Cat"]
+    let sectionTitles = ["Dog"]
+    
+    var rowNum:Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if rowNum == -1 {
+            rowNum = dogImages.count
+        }
         myTableView.customTableViewDelegate = self
     }
     
@@ -29,31 +32,26 @@ class ViewController: UIViewController,CustomTableViewProtocol{
 
 extension ViewController{
     func customTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowNum: Int
-        if section == 0 {
-            rowNum = dogImages.count
-        } else {
-            rowNum = catImages.count
-        }
-        
+        print("rownum == \(rowNum)")
         return rowNum
     }
     
     func customNumberOfSections(in tableView: UITableView) -> Int {
-        return sectionTitles.count
+        var sectionNum = sectionTitles.count
+        if rowNum == 0 {
+            sectionNum = 0
+        }
+        print("sectionNum == \(sectionNum)")
+        return sectionNum
     }
     
     func customTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "myCell")
         cell.textLabel?.text = ":\(sectionTitles[indexPath.section])"
         
-        if indexPath.section == 0 {
-            cell.detailTextLabel?.text = "This is a \(dogImages[indexPath.row])"
-            cell.imageView?.image = UIImage(named: "\(dogImages[indexPath.row]).png")
-        } else {
-            cell.detailTextLabel?.text = "This is a \(catImages[indexPath.row])"
-            cell.imageView?.image = UIImage(named: "\(catImages[indexPath.row]).png")
-        }
+        cell.detailTextLabel?.text = "This is a \(dogImages[indexPath.row])"
+        cell.imageView?.image = UIImage(named: "\(dogImages[indexPath.row]).png")
+       
         return cell
     }
     

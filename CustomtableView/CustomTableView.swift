@@ -16,10 +16,6 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     private var emptyView: EmptyView?
     private var customEmptyView: UIView? //emptyViewを独自に変えたい場合はこれに代入
     
-    
-    //表示するrowの数をカウントする変数。ここが0ならemptyViewが表示されます。
-    var totalRowNum = Int(0)
-    
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         setup()
@@ -76,17 +72,16 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
 
 extension CustomTableView{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowNum = customTableViewDelegate.customTableView(tableView, numberOfRowsInSection:section)
-        //rowNumが0だったらemptyView を表示させる処理をここに挟む。
-        //それを表示させる親ビューを引数で受け取る。
-        //表示させたいビューは任意で受け取る。
-        self.totalRowNum += rowNum //表示するrowの数がカウントされる
-        print(totalRowNum)
-        return rowNum
+        return customTableViewDelegate.customTableView(tableView, numberOfRowsInSection:section)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return customTableViewDelegate.customNumberOfSections(in: tableView)
+        let sectionNum = customTableViewDelegate.customNumberOfSections(in: tableView)
+        //セクション数が0の時にemptyViewが表示される
+        if sectionNum == 0 && self.emptyView == nil{
+            showEmptyView()
+        }
+        return sectionNum
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,15 +93,7 @@ extension CustomTableView{
         return customTableViewDelegate.customTableView(tableView, heightForRowAt: indexPath)
     }
     
-    //ここが最後に呼ばれるdelegateメソッドっぽいのでここでemptyView表示の処理をする
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        //表示するrowが無い場合にemptyViewが表示される
-        if section == self.numberOfSections-1{
-            if self.totalRowNum == 0 && self.emptyView == nil{
-                showEmptyView()
-            }
-            self.totalRowNum = 0 //リセット
-        }
         
         return customTableViewDelegate.customTableView(tableView, titleForHeaderInSection: section)
     }

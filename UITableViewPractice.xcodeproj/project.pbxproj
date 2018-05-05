@@ -23,6 +23,7 @@
 		6160CA921FFF490A008AC4F7 /* Munchkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6160CA881FFF4909008AC4F7 /* Munchkin.png */; };
 		6160CA931FFF490A008AC4F7 /* Russian Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 6160CA891FFF4909008AC4F7 /* Russian Blue.png */; };
 		6160CA941FFF490A008AC4F7 /* Miniature Dachshund.png in Resources */ = {isa = PBXBuildFile; fileRef = 6160CA8A1FFF4909008AC4F7 /* Miniature Dachshund.png */; };
+		61E765EB209E3A03005518AA /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E765EA209E3A03005518AA /* EditViewController.swift */; };
 		61EBD6932094C94F0030F09B /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD6922094C94F0030F09B /* CustomTableView.swift */; };
 		61EBD6952094C96E0030F09B /* CustomTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */; };
 		61EBD6A0209532BC0030F09B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBD69F209532BC0030F09B /* EmptyView.swift */; };
@@ -47,6 +48,7 @@
 		6160CA881FFF4909008AC4F7 /* Munchkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Munchkin.png; sourceTree = "<group>"; };
 		6160CA891FFF4909008AC4F7 /* Russian Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Russian Blue.png"; sourceTree = "<group>"; };
 		6160CA8A1FFF4909008AC4F7 /* Miniature Dachshund.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Miniature Dachshund.png"; sourceTree = "<group>"; };
+		61E765EA209E3A03005518AA /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		61EBD6922094C94F0030F09B /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		61EBD6942094C96E0030F09B /* CustomTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewDelegate.swift; sourceTree = "<group>"; };
 		61EBD69F209532BC0030F09B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				6160CA6E1FFE38C7008AC4F7 /* ViewController.swift */,
+				61E765EA209E3A03005518AA /* EditViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			files = (
 				61EBD6952094C96E0030F09B /* CustomTableViewDelegate.swift in Sources */,
 				61EBD6A0209532BC0030F09B /* EmptyView.swift in Sources */,
+				61E765EB209E3A03005518AA /* EditViewController.swift in Sources */,
 				6160CA6F1FFE38C7008AC4F7 /* ViewController.swift in Sources */,
 				61EBD6932094C94F0030F09B /* CustomTableView.swift in Sources */,
 				6160CA6D1FFE38C7008AC4F7 /* AppDelegate.swift in Sources */,
