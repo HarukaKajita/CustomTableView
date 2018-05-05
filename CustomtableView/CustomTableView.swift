@@ -15,7 +15,6 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     var customTableViewDelegate: CustomTableViewProtocol!
     var isEmpty: Bool = false
     var emptyView: EmptyView?
-    var reloadInterval = 0.5
     
     //表示するrowの数をカウントする変数。ここが0ならemptyViewが表示されます。
     var totalRowNum = Int(0)
@@ -57,11 +56,8 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     @objc func reload() {
         //emptyViewを削除しないとどんどん重なっていく
         emptyView?.removeFromSuperview()
-        //更新が早すぎて更新されたかどうかが分からないので0.5秒開けています。
-        DispatchQueue.main.asyncAfter(deadline: .now() + reloadInterval) {
-            self.reloadData()
-        }
-        
+        //更新
+        self.reloadData()
     }
 }
 
@@ -93,10 +89,13 @@ extension CustomTableView{
     //ここが最後に呼ばれるdelegateメソッドっぽいのでここでemptyView表示の処理をする
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         //表示するrowが無い場合にemptyViewが表示される
-        if self.totalRowNum == 0{
+        if section == self.numberOfSections-1{
+            if self.totalRowNum == 0 {
             showEmptyView()
+            }
             self.totalRowNum = 0 //リセット
         }
+        
         return customTableViewDelegate.customTableView(tableView, titleForHeaderInSection: section)
     }
     

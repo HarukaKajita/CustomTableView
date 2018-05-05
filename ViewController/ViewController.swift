@@ -62,7 +62,6 @@ extension ViewController{
     }
     
     func customTableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         return sectionTitles[section]
     }
     
