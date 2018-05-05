@@ -13,7 +13,6 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //このデリゲートメソッドの定義を書き手に書いてもらう
     //基本的なUITableViewDelegateのデリゲートメソッドは書かなくてOKにする
     var customTableViewDelegate: CustomTableViewProtocol!
-    var isEmpty: Bool = false
     var emptyView: EmptyView?
     
     //表示するrowの数をカウントする変数。ここが0ならemptyViewが表示されます。
@@ -53,6 +52,7 @@ class CustomTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         print("reload")
         //emptyViewを削除しないとどんどん重なっていく
         emptyView?.removeFromSuperview()
+        emptyView = nil
         //更新
         self.reloadData()
     }
@@ -67,6 +67,7 @@ extension CustomTableView{
         //それを表示させる親ビューを引数で受け取る。
         //表示させたいビューは任意で受け取る。
         self.totalRowNum += rowNum //表示するrowの数がカウントされる
+        print(totalRowNum)
         return rowNum
     }
     
@@ -87,8 +88,8 @@ extension CustomTableView{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         //表示するrowが無い場合にemptyViewが表示される
         if section == self.numberOfSections-1{
-            if self.totalRowNum == 0 {
-            showEmptyView()
+            if self.totalRowNum == 0 && self.emptyView == nil{
+                showEmptyView()
             }
             self.totalRowNum = 0 //リセット
         }
